@@ -3,3 +3,5 @@
 .venv/
 venv/
 .vscode/
+gui/ui/
+__pycache__/
