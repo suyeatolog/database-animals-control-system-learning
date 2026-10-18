@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'dialog_animal.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.11.2
+## Created by: Qt User Interface Compiler version 6.12.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -20,27 +20,27 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QDialog,
     QLabel, QLineEdit, QPushButton, QSizePolicy,
     QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
 
+from gui.transformed_ui.dialog_geometry import set_dialog_height
+
 class Ui_DialogAnimal(object):
     def setupUi(self, DialogAnimal):
         if not DialogAnimal.objectName():
             DialogAnimal.setObjectName(u"DialogAnimal")
-        DialogAnimal.resize(680, 620)
+        DialogAnimal.resize(680, 880)
+        DialogAnimal.setMinimumSize(QSize(680, 880))
+        set_dialog_height(DialogAnimal)
         self.mainLayout = QVBoxLayout(DialogAnimal)
         self.mainLayout.setSpacing(14)
         self.mainLayout.setObjectName(u"mainLayout")
         self.mainLayout.setContentsMargins(28, 24, 28, 24)
-        self.labelTitle = QLabel(DialogAnimal)
-        self.labelTitle.setObjectName(u"labelTitle")
-
-        self.mainLayout.addWidget(self.labelTitle)
-
         self.groupGeneral = QGroupBox(DialogAnimal)
         self.groupGeneral.setObjectName(u"groupGeneral")
+        self.groupGeneral.setMinimumSize(QSize(0, 450))
         self.formGeneral = QFormLayout(self.groupGeneral)
         self.formGeneral.setObjectName(u"formGeneral")
+        self.formGeneral.setLabelAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
         self.formGeneral.setHorizontalSpacing(16)
         self.formGeneral.setVerticalSpacing(12)
-        self.formGeneral.setLabelAlignment(Qt.AlignRight|Qt.AlignVCenter)
         self.label = QLabel(self.groupGeneral)
         self.label.setObjectName(u"label")
 
@@ -141,9 +141,9 @@ class Ui_DialogAnimal(object):
         self.groupBox.setObjectName(u"groupBox")
         self.formLayout = QFormLayout(self.groupBox)
         self.formLayout.setObjectName(u"formLayout")
+        self.formLayout.setLabelAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
         self.formLayout.setHorizontalSpacing(16)
         self.formLayout.setVerticalSpacing(12)
-        self.formLayout.setLabelAlignment(Qt.AlignRight|Qt.AlignVCenter)
         self.label8 = QLabel(self.groupBox)
         self.label8.setObjectName(u"label8")
 
@@ -151,7 +151,6 @@ class Ui_DialogAnimal(object):
 
         self.editBirdCountryCode = QLineEdit(self.groupBox)
         self.editBirdCountryCode.setObjectName(u"editBirdCountryCode")
-        self.editBirdCountryCode.setMaximumWidth(180)
 
         self.formLayout.setWidget(0, QFormLayout.ItemRole.FieldRole, self.editBirdCountryCode)
 
@@ -200,9 +199,9 @@ class Ui_DialogAnimal(object):
         self.groupBox1.setObjectName(u"groupBox1")
         self.formLayout1 = QFormLayout(self.groupBox1)
         self.formLayout1.setObjectName(u"formLayout1")
+        self.formLayout1.setLabelAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
         self.formLayout1.setHorizontalSpacing(16)
         self.formLayout1.setVerticalSpacing(12)
-        self.formLayout1.setLabelAlignment(Qt.AlignRight|Qt.AlignVCenter)
         self.label12 = QLabel(self.groupBox1)
         self.label12.setObjectName(u"label12")
 
@@ -214,7 +213,6 @@ class Ui_DialogAnimal(object):
         self.spinReptileTemp.setMaximum(50.000000000000000)
         self.spinReptileTemp.setSingleStep(0.500000000000000)
         self.spinReptileTemp.setValue(28.000000000000000)
-        self.spinReptileTemp.setMaximumWidth(180)
 
         self.formLayout1.setWidget(0, QFormLayout.ItemRole.FieldRole, self.spinReptileTemp)
 
@@ -250,7 +248,7 @@ class Ui_DialogAnimal(object):
         self.vboxLayout2.setObjectName(u"vboxLayout2")
         self.label15 = QLabel(self.pageEmpty)
         self.label15.setObjectName(u"label15")
-        self.label15.setAlignment(Qt.AlignCenter)
+        self.label15.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.vboxLayout2.addWidget(self.label15)
 
@@ -258,14 +256,14 @@ class Ui_DialogAnimal(object):
 
         self.mainLayout.addWidget(self.stackDetails)
 
-        self.spacerItem = QSpacerItem(0, 0, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.spacerItem = QSpacerItem(0, 0, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.mainLayout.addItem(self.spacerItem)
 
         self.hboxLayout = QHBoxLayout()
         self.hboxLayout.setSpacing(12)
         self.hboxLayout.setObjectName(u"hboxLayout")
-        self.spacerItem1 = QSpacerItem(0, 0, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.spacerItem1 = QSpacerItem(0, 0, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.hboxLayout.addItem(self.spacerItem1)
 
@@ -359,8 +357,6 @@ class Ui_DialogAnimal(object):
 "    }\n"
 "    QPushButton#btnCancel:hover { background-color: #F7FAFC; border-color: #CBD5E0; }\n"
 "   ", None))
-        self.labelTitle.setText(QCoreApplication.translate("DialogAnimal", u"\u041a\u0430\u0440\u0442\u043e\u0447\u043a\u0430 \u043f\u0438\u0442\u043e\u043c\u0446\u0430", None))
-        self.labelTitle.setObjectName(QCoreApplication.translate("DialogAnimal", u"dialogTitle", None))
         self.groupGeneral.setTitle(QCoreApplication.translate("DialogAnimal", u"\u041e\u0431\u0449\u0438\u0435 \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f", None))
         self.label.setText(QCoreApplication.translate("DialogAnimal", u"\u0423\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440", None))
         self.editAnimalId.setPlaceholderText(QCoreApplication.translate("DialogAnimal", u"\u0410\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0438", None))
@@ -393,11 +389,8 @@ class Ui_DialogAnimal(object):
         self.dateReptileHibernStart.setDisplayFormat(QCoreApplication.translate("DialogAnimal", u"dd.MM.yyyy", None))
         self.label14.setText(QCoreApplication.translate("DialogAnimal", u"\u041a\u043e\u043d\u0435\u0446 \u0437\u0438\u043c\u043d\u0435\u0439 \u0441\u043f\u044f\u0447\u043a\u0438", None))
         self.dateReptileHibernEnd.setDisplayFormat(QCoreApplication.translate("DialogAnimal", u"dd.MM.yyyy", None))
-        self.label15.setText(QCoreApplication.translate("DialogAnimal", u"\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u043d\u0435 \u0442\u0440\u0435\u0431\u0443\u044e\u0442\u0441\u044f", None))
         self.label15.setStyleSheet(QCoreApplication.translate("DialogAnimal", u"color: #718096; font-style: italic; font-size: 13px; padding: 24px;", None))
+        self.label15.setText(QCoreApplication.translate("DialogAnimal", u"\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u043d\u0435 \u0442\u0440\u0435\u0431\u0443\u044e\u0442\u0441\u044f", None))
         self.btnCancel.setText(QCoreApplication.translate("DialogAnimal", u"\u041e\u0442\u043c\u0435\u043d\u0430", None))
-        self.btnCancel.setObjectName(QCoreApplication.translate("DialogAnimal", u"btnCancel", None))
         self.btnSave.setText(QCoreApplication.translate("DialogAnimal", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
-        self.btnSave.setObjectName(QCoreApplication.translate("DialogAnimal", u"btnSave", None))
     # retranslateUi
-

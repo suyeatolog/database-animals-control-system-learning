@@ -20,11 +20,14 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDateEdit,
     QLabel, QLineEdit, QPushButton, QSizePolicy,
     QSpacerItem, QVBoxLayout, QWidget)
 
+from gui.transformed_ui.dialog_geometry import set_dialog_height
+
 class Ui_DialogEmployee(object):
     def setupUi(self, DialogEmployee):
         if not DialogEmployee.objectName():
             DialogEmployee.setObjectName(u"DialogEmployee")
         DialogEmployee.resize(540, 560)
+        set_dialog_height(DialogEmployee)
         self.mainLayout = QVBoxLayout(DialogEmployee)
         self.mainLayout.setSpacing(14)
         self.mainLayout.setObjectName(u"mainLayout")
@@ -289,4 +292,3 @@ class Ui_DialogEmployee(object):
         self.btnSave.setText(QCoreApplication.translate("DialogEmployee", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
         self.btnSave.setObjectName(QCoreApplication.translate("DialogEmployee", u"btnSave", None))
     # retranslateUi
-

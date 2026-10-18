@@ -20,11 +20,14 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFormLayout,
     QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
     QWidget)
 
+from gui.transformed_ui.dialog_geometry import set_dialog_height
+
 class Ui_DialogDiet(object):
     def setupUi(self, DialogDiet):
         if not DialogDiet.objectName():
             DialogDiet.setObjectName(u"DialogDiet")
         DialogDiet.resize(480, 380)
+        set_dialog_height(DialogDiet)
         self.mainLayout = QVBoxLayout(DialogDiet)
         self.mainLayout.setSpacing(14)
         self.mainLayout.setObjectName(u"mainLayout")
@@ -188,4 +191,3 @@ class Ui_DialogDiet(object):
         self.btnSave.setText(QCoreApplication.translate("DialogDiet", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
         self.btnSave.setObjectName(QCoreApplication.translate("DialogDiet", u"btnSave", None))
     # retranslateUi
-
