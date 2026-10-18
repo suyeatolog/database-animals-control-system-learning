@@ -3,5 +3,6 @@
 .venv/
 venv/
 .vscode/
-gui/ui/
+gui/forms/
 __pycache__/
+db/db_config.py
