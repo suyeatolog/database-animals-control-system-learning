@@ -11,19 +11,16 @@ class AnimalsController:
         self.main_window = main_window
         self.current_animal_id = None
         
-        # Берём виджеты из главного окна (они уже созданы через setupUi)
         self.combo_type = main_window.comboAnimalType
         self.edit_search = main_window.editAnimalSearch
         self.table = main_window.tableAnimals
         self.btn_add = main_window.btnAddAnimal
-        self.btn_edit = main_window.btnSecondary  # ← в .ui файле это "Редактировать"
+        self.btn_edit = main_window.btnSecondary
         self.btn_delete = main_window.btnDelete
         
-        # Создаём модель для таблицы
         self.model = QStandardItemModel()
         self.table.setModel(self.model)
         
-        # Подключаем сигналы
         self.combo_type.currentTextChanged.connect(self._filter_data)
         self.edit_search.textChanged.connect(self._filter_data)
         self.table.selectionModel().selectionChanged.connect(self._on_selection_changed)
@@ -31,7 +28,6 @@ class AnimalsController:
         self.btn_edit.clicked.connect(self._on_edit)
         self.btn_delete.clicked.connect(self._on_delete)
         
-        # Загружаем данные
         self.all_data = []
         self._load_data()
     
@@ -51,13 +47,11 @@ class AnimalsController:
         for row in self.all_data:
             animal_id, name, birth_date, gender, animal_type, zone, keeper, vet = row
             
-            # Фильтр по типу
             if type_filter != "Все":
                 type_map = {"Птицы": "Птица", "Рептилии": "Рептилия", "Млекопитающие": "Млекопитающее"}
                 if animal_type != type_map.get(type_filter):
                     continue
             
-            # Фильтр по имени
             if name_filter and name_filter not in name.lower():
                 continue
             
