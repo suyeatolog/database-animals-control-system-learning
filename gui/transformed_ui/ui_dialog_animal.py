@@ -68,7 +68,7 @@ class Ui_DialogAnimal(object):
 
         self.dateBirth = QDateEdit(self.groupGeneral)
         self.dateBirth.setObjectName(u"dateBirth")
-        self.dateBirth.setCalendarPopup(True)
+        self.dateBirth.setCalendarPopup(False)
 
         self.formGeneral.setWidget(2, QFormLayout.ItemRole.FieldRole, self.dateBirth)
 
@@ -182,7 +182,7 @@ class Ui_DialogAnimal(object):
 
         self.dateBirdArrival = QDateEdit(self.groupBox)
         self.dateBirdArrival.setObjectName(u"dateBirdArrival")
-        self.dateBirdArrival.setCalendarPopup(True)
+        self.dateBirdArrival.setCalendarPopup(False)
 
         self.formLayout.setWidget(3, QFormLayout.ItemRole.FieldRole, self.dateBirdArrival)
 
@@ -223,7 +223,7 @@ class Ui_DialogAnimal(object):
 
         self.dateReptileHibernStart = QDateEdit(self.groupBox1)
         self.dateReptileHibernStart.setObjectName(u"dateReptileHibernStart")
-        self.dateReptileHibernStart.setCalendarPopup(True)
+        self.dateReptileHibernStart.setCalendarPopup(False)
 
         self.formLayout1.setWidget(1, QFormLayout.ItemRole.FieldRole, self.dateReptileHibernStart)
 
@@ -234,7 +234,7 @@ class Ui_DialogAnimal(object):
 
         self.dateReptileHibernEnd = QDateEdit(self.groupBox1)
         self.dateReptileHibernEnd.setObjectName(u"dateReptileHibernEnd")
-        self.dateReptileHibernEnd.setCalendarPopup(True)
+        self.dateReptileHibernEnd.setCalendarPopup(False)
 
         self.formLayout1.setWidget(2, QFormLayout.ItemRole.FieldRole, self.dateReptileHibernEnd)
 

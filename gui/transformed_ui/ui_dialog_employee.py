@@ -71,7 +71,7 @@ class Ui_DialogEmployee(object):
 
         self.dateEmpBirth = QDateEdit(self.groupBox)
         self.dateEmpBirth.setObjectName(u"dateEmpBirth")
-        self.dateEmpBirth.setCalendarPopup(True)
+        self.dateEmpBirth.setCalendarPopup(False)
 
         self.formLayout.setWidget(2, QFormLayout.ItemRole.FieldRole, self.dateEmpBirth)
 
