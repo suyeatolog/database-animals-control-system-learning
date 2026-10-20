@@ -274,7 +274,7 @@ class Ui_DialogEmployee(object):
         self.label2.setText(QCoreApplication.translate("DialogEmployee", u"\u0414\u0430\u0442\u0430 \u0440\u043e\u0436\u0434\u0435\u043d\u0438\u044f", None))
         self.dateEmpBirth.setDisplayFormat(QCoreApplication.translate("DialogEmployee", u"dd.MM.yyyy", None))
         self.label3.setText(QCoreApplication.translate("DialogEmployee", u"\u0422\u0435\u043b\u0435\u0444\u043e\u043d", None))
-        self.editEmpPhone.setPlaceholderText(QCoreApplication.translate("DialogEmployee", u"+7 (___) ___-__-__", None))
+        self.editEmpPhone.setPlaceholderText(QCoreApplication.translate("DialogEmployee", u"+375 (__) ___-__-__", None))
         self.label4.setText(QCoreApplication.translate("DialogEmployee", u"\u0421\u0435\u043c\u0435\u0439\u043d\u043e\u0435 \u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0435", None))
         self.comboMarital.setItemText(0, QCoreApplication.translate("DialogEmployee", u"\u041d\u0435 \u0432 \u0431\u0440\u0430\u043a\u0435", None))
         self.comboMarital.setItemText(1, QCoreApplication.translate("DialogEmployee", u"\u0412 \u0431\u0440\u0430\u043a\u0435", None))
