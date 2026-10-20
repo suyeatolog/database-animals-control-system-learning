@@ -69,7 +69,7 @@ class DietDialog(QDialog, Ui_DialogDiet):
             )
 
 
-class DietTypeDialog(QDialog):
+class DietTypeDialog(QDialog): # диалог для редактирования типа рациона
     def __init__(self, db: DatabaseManager, old_type_name=None, parent=None):
         super().__init__(parent)
         self.db = db
@@ -128,7 +128,7 @@ class DietTypeDialog(QDialog):
             QMessageBox.critical(self, "Ошибка", "Не удалось сохранить тип рациона.")
 
 
-class AssignDietDialog(QDialog):
+class AssignDietDialog(QDialog): # диалог для назначения рациона питомцу
     def __init__(self, db: DatabaseManager, history_id=None, parent=None):
         super().__init__(parent)
         self.db = db
