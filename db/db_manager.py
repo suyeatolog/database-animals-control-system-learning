@@ -141,15 +141,15 @@ class DatabaseManager:
             query, (name, birth_date, gender, animal_type, zone_id, keeper_id, vet_id, animal_id)
         )
 
-    def update_bird_details(self, animal_id, country_code, country_name, departure_date, arrival_date):
+    def update_bird_details(self, animal_id, country_code, country_name, departure_date, arrival_date): #для переключения между птицами и рептилиями, удаляем детали другой категории
         self.execute_query("DELETE FROM public.reptile_details WHERE animal_id = %s", (animal_id,))
         return self.add_bird_details(animal_id, country_code, country_name, departure_date, arrival_date)
 
-    def update_reptile_details(self, animal_id, normal_temperature, hibernation_start, hibernation_end):
+    def update_reptile_details(self, animal_id, normal_temperature, hibernation_start, hibernation_end): #то же самое
         self.execute_query("DELETE FROM public.bird_details WHERE animal_id = %s", (animal_id,))
         return self.add_reptile_details(animal_id, normal_temperature, hibernation_start, hibernation_end)
 
-    def clear_special_details(self, animal_id):
+    def clear_special_details(self, animal_id): # удаляем детали другой категории при смене типа животного
         self.execute_query("DELETE FROM public.bird_details WHERE animal_id = %s", (animal_id,))
         self.execute_query("DELETE FROM public.reptile_details WHERE animal_id = %s", (animal_id,))
 
@@ -218,11 +218,11 @@ class DatabaseManager:
         res = self.execute_query(query, (full_name, birth_date, phone, marital_status, role, spouse_id), fetch=True)
         new_id = res[0][0] if res else None
         if new_id and spouse_id:
-            self.execute_query(
+            self.execute_query( # убираем предыдущую связь с супругом, если она была
                 "UPDATE public.employees SET spouse_id = NULL WHERE spouse_id = %s AND employee_id != %s",
                 (spouse_id, new_id)
             )
-            self.execute_query(
+            self.execute_query( # устанавливаем связь с новым супругом, крч защита от двоеженства
                 "UPDATE public.employees SET spouse_id = %s, marital_status = 'В браке' WHERE employee_id = %s",
                 (new_id, spouse_id)
             )
@@ -238,7 +238,7 @@ class DatabaseManager:
         """
         ok = self.execute_query(query, (full_name, birth_date, phone, marital_status, role, spouse_id, emp_id))
         if ok and spouse_id:
-            self.execute_query(
+            self.execute_query( # тут то же самое, что и в add_employee, защита от двоеженства
                 "UPDATE public.employees SET spouse_id = NULL WHERE spouse_id = %s AND employee_id != %s",
                 (spouse_id, emp_id)
             )
@@ -246,19 +246,18 @@ class DatabaseManager:
                 "UPDATE public.employees SET spouse_id = %s, marital_status = 'В браке' WHERE employee_id = %s",
                 (emp_id, spouse_id)
             )
-        return ok
+        return ok # возвращаем результат обновления, чтобы знать, было ли оно успешным
 
     def delete_employee(self, emp_id):
         self.execute_query("UPDATE public.employees SET spouse_id = NULL WHERE spouse_id = %s", (emp_id,))
         return self.execute_query("DELETE FROM public.employees WHERE employee_id = %s", (emp_id,))
 
-    def get_diet_types_summary(self):
-        """Возвращает уникальные типы рационов, количество рационов в каждом типе и их список через запятую"""
+    def get_diet_types_summary(self): # string_agg для красивого вывода всех рационов одного типа в отчете, конкатенация строк с разделителем
         query = """
             SELECT 
                 diet_type,
                 COUNT(diet_id) AS diets_count,
-                STRING_AGG(diet_name, ', ' ORDER BY diet_name) AS diet_names
+                STRING_AGG(diet_name, ', ' ORDER BY diet_name) AS diet_names 
             FROM public.diets
             GROUP BY diet_type
             ORDER BY diet_type
@@ -271,7 +270,6 @@ class DatabaseManager:
         return [r[0] for r in rows]
 
     def add_diet_type_with_first_diet(self, diet_type, first_diet_name):
-        """Добавляет новый тип рациона вместе с первым рационом этого типа"""
         query = """
             INSERT INTO public.diets (diet_type, diet_name)
             VALUES (%s, %s)
@@ -281,12 +279,10 @@ class DatabaseManager:
         return res[0][0] if res else None
 
     def rename_diet_type(self, old_type_name, new_type_name):
-        """Переименовывает тип рациона во всех записях таблицы diets"""
         query = "UPDATE public.diets SET diet_type = %s WHERE diet_type = %s"
         return self.execute_query(query, (new_type_name, old_type_name))
 
     def delete_diet_type(self, diet_type):
-        """Удаляет все рационы указанного типа (если они не используются в истории)"""
         query = "DELETE FROM public.diets WHERE diet_type = %s"
         return self.execute_query(query, (diet_type,))
 
@@ -381,7 +377,7 @@ class DatabaseManager:
         query = "DELETE FROM public.animal_diet_history WHERE history_id = %s"
         return self.execute_query(query, (history_id,))
 
-    def get_full_animal_report(self, animal_type, name):
+    def get_full_animal_report(self, animal_type, name): # left join lateral для получения текущего рациона животного, если он есть, иначе null.
         query = """
             SELECT 
                 a.animal_id,
