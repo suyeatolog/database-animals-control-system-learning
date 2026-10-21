@@ -1,4 +1,5 @@
-from PySide6.QtCore import QDate
+from PySide6.QtCore import QDate, QRegularExpression
+from PySide6.QtGui import QRegularExpressionValidator
 from PySide6.QtWidgets import QDialog, QMessageBox
 
 from db.db_manager import DatabaseManager
@@ -9,6 +10,14 @@ class AnimalDialog(QDialog, Ui_DialogAnimal):
     def __init__(self, db: DatabaseManager, animal_id=None, parent=None):
         super().__init__(parent)
         self.setupUi(self)
+
+        country_name_regex = QRegularExpression(r"^[A-Za-zА-Яа-яЁё\s\-]+$")
+        country_name_validator = QRegularExpressionValidator(country_name_regex, self)
+        self.editBirdCountryName.setValidator(country_name_validator)
+
+        regex = QRegularExpression("^[A-Z]{2,3}$")
+        validator = QRegularExpressionValidator(regex, self)
+        self.editBirdCountryCode.setValidator(validator)
 
         for date_widget in (
             self.dateBirth,
