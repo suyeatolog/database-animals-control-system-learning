@@ -7,3 +7,4 @@ gui/forms/
 __pycache__/
 db/db_config.py
 diagramms/
+pbz2.pdf
