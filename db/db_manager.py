@@ -96,14 +96,26 @@ class DatabaseManager:
         result = self.execute_query(query, (animal_id,), fetch=True)
         return result[0] if result else None
 
-    def add_animal(self, name, birth_date, gender, animal_type, zone_id, keeper_id, vet_id):
-        query = """
-            INSERT INTO public.animals (name, birth_date, gender, animal_type, zone_id, keeper_id, vet_id)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
+    def add_animal(self, name, birth_date, gender, animal_type, zone_id, keeper_id, vet_id): 
+        find_id_query = """
+            SELECT s.id
+            FROM generate_series(1, COALESCE((SELECT MAX(animal_id) FROM public.animals), 0) + 1) AS s(id)
+            WHERE NOT EXISTS (SELECT 1 FROM public.animals a WHERE a.animal_id = s.id)
+            ORDER BY s.id
+            LIMIT 1;
+        """
+        res_id = self.execute_query(find_id_query, fetch=True)
+        new_id = res_id[0][0]
+
+        insert_query = """
+            INSERT INTO public.animals (animal_id, name, birth_date, gender, animal_type, zone_id, keeper_id, vet_id)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING animal_id
         """
         result = self.execute_query(
-            query, (name, birth_date, gender, animal_type, zone_id, keeper_id, vet_id), fetch=True
+            insert_query, 
+            (new_id, name, birth_date, gender, animal_type, zone_id, keeper_id, vet_id), 
+            fetch=True
         )
         return result[0][0] if result else None
 
